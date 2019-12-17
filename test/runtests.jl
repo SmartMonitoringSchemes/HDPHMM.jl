@@ -26,9 +26,9 @@ end
 
     d = TransitionDistribution(
         L,
-        Gamma(1, 1/0.01),
-        Gamma(1, 1/0.01),
-        Beta(500, 1)
+        Gamma(1, 1/0.1),
+        Gamma(1, 1/0.1),
+        Beta(50, 1)
     )
 
     n = zeros(L, L)
@@ -56,7 +56,7 @@ end
 @testset "Sampler" begin
     L, LP = 10, 5
 
-    id = InitialStateDistribution(L, 1e-4)
+    id = InitialStateDistribution(L, 1)
 
     td = TransitionDistribution(
         L,
@@ -69,7 +69,7 @@ end
         L,
         LP,
         Gamma(1, 0.5),
-        NormalInverseChisq(10, 2, 1, 1),
+        NormalInverseChisq(1, 1, 1, 1),
         Normal
     )
 

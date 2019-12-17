@@ -28,7 +28,7 @@ end
 # suffstats(::Type{DPMMObservationModel}, z, s, y)
 function suffstats(sampler, state, y, z, s)
     @argcheck length(y) == length(z) == length(s)
-    L, LP = sampler.L, sampler.LP
+    L, LP, T = sampler.L, sampler.LP, length(y)
 
     # n[j,k]  = number of customers in restaurant j eating dish k
     # n'[k,j] = number of observations associated to component j of state k mixture

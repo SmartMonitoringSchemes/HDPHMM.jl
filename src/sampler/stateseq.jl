@@ -28,7 +28,7 @@ function resample_z(sampler, state, logpw, logp)
 
     @inbounds for t in 2:T
         for j in OneTo(LP), k in OneTo(L)
-            f[k,j] = exp(log_π[z,k] + logpw[k,j,t] + log_betas[t,k])
+            f[k,j] = exp(log_π[z[t-1],k] + logpw[k,j,t] + log_betas[t,k])
         end
         z[t], s[t] = rand(UnnormalizedCategorical(f))
     end

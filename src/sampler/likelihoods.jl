@@ -18,7 +18,7 @@ function likelihoods(sampler, state, y)
 
     @inbounds for (k, mixture) in enumerate(state.obs_model.mixtures)
         @inbounds for lp in OneTo(LP)
-            log_pdfs_w[k,lp,:] .= log_ψ[k][lp] .+ Statistikk.logpdf(mixture[1].components[lp], y)
+            log_pdfs_w[k,lp,:] .= log_ψ[k][lp] .+ logpdf(mixture[1].components[lp], y)
         end
         # TODO: Optimize this line
         log_likelihoods[:,k] = __inner_loop2(log_pdfs_w, k)

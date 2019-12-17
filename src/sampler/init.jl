@@ -24,10 +24,8 @@ initialize(it::FixedInit, ::Any; kwargs...) = it.seq
 
 function initialize(it::KMeansInit, X; verb = false)
     X = copy(X)
-    
     ffill!(X)
     bfill!(X)
-    X = collect(skipmissing(X))
     kmeans(permutedims(X), it.K, display = verb ? :final : :none).assignments
 end
 
@@ -54,14 +52,14 @@ end
 
 # TODO: Move these outside...
 
-# function ffill!(X)
-#     for i in 2:length(X)
-#         ismissing(X[i]) && (X[i] = X[i - 1])
-#     end
-# end
+function ffill!(X)
+    for i in 2:length(X)
+        ismissing(X[i]) && (X[i] = X[i - 1])
+    end
+end
 
-# function bfill!(X)
-#     for i in length(X) - 1:-1:1
-#         ismissing(X[i]) && (X[i] = X[i + 1])
-#     end
-# end
+function bfill!(X)
+    for i in length(X) - 1:-1:1
+        ismissing(X[i]) && (X[i] = X[i + 1])
+    end
+end
