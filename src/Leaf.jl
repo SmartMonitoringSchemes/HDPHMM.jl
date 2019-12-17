@@ -18,7 +18,8 @@ export
     ObservationMixture,
     BlockedSamplerState,
     BlockedSampler,
-    resample
+    resample,
+    sample
 
 include("progress.jl")
 
