@@ -1,0 +1,22 @@
+name = "Leaf"
+uuid = "6ef5f6ad-5387-486d-9222-e3ec137b0242"
+authors = ["Maxime Mouchet <max@maxmouchet.com>"]
+version = "0.1.0"
+
+[deps]
+ArgCheck = "dce04be8-c92d-5529-be00-80e4d2c0e197"
+Clustering = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
+ConjugatePriors = "1624bea9-42b1-5fc1-afd3-e96f729c8d6c"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+HMMBase = "b2b3ca75-8444-5ffa-85e6-af70e2b64fe7"
+Impute = "f7bf1975-0170-51b9-8c5f-a992d46b9575"
+MCMCChains = "c7f686f2-ff18-58e9-bc7b-31028e88f75d"
+
+[compat]
+ArgCheck = "1.0"
+ConjugatePriors = "0.4"
+Distributions = "0.21"
+HMMBase = "1.0"
+Impute = "0.3"
+MCMCChains = "0.4"
+julia = "1.0"
