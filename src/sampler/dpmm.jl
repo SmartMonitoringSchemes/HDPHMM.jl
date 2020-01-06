@@ -11,6 +11,7 @@ struct DPMMObservationModel
 end
 
 # TODO: Consistent arguments ordering
+# ::Type{T}, d_prior, σ_prior, L, LP
 function DPMMObservationModel(L, LP, σ_prior, obs_prior, ::Type{T}) where T
     σ = rand(σ_prior)
     mixtures = map(_ -> BayesianMixtureModel(T, obs_prior, σ, LP), 1:L)
