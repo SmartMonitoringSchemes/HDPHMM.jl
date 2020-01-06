@@ -2,6 +2,7 @@ using Leaf
 using Test
 using Distributions
 import ConjugatePriors: NormalInverseChisq
+import Leaf: DPMMObservationModelStats
 
 # TODO: Add tests with missing values:
 # - Float64 observations only
@@ -11,6 +12,14 @@ import ConjugatePriors: NormalInverseChisq
 # TODO: Basic inference test with simple HMM,
 # test that we find the same state sequence,
 # and similar distributions (?)
+
+function fake(::Type{DPMMObservationModelStats}; L = 10, LP = 5)
+    n  = rand(1:100, L, L)
+    np = rand(1:100, L, LP)
+    Y = Matrix{Vector{Float64}}(undef, L, LP)
+    for i in eachindex(Y); Y[i] = rand(10); end
+    DPMMObservationModelStats(n, np, Y)
+end
 
 @testset "Initial Distribution" begin
     L = 10
@@ -45,12 +54,9 @@ end
     obs_prior = NormalInverseChisq(10, 2, 1, 1)
 
     d = DPMMObservationModel(L, LP, σ_prior, obs_prior, Normal)
+    stats = fake(DPMMObservationModelStats)
 
-    n  = rand(1:100, L, L)
-    np = rand(1:100, L, LP)
-    Y  = [[rand(k) for k in np[l,:]] for l in 1:L]
-
-    @test_nowarn resample(d, n, np, Y)
+    @test_nowarn resample(d, stats.n, stats.np, stats.Y)
 end
 
 @testset "Sampler" begin
@@ -77,5 +83,6 @@ end
     sampler = BlockedSampler(L, LP)
 
     # TODO: Multivariate observations
+    # TODO: Missing observations
     @test_nowarn resample(sampler, state, rand(1000))
 end

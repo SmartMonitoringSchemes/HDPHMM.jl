@@ -5,7 +5,7 @@ using Clustering
 using Distributions
 using HMMBase
 
-import Base: OneTo, length, rand
+import Base: OneTo, length, size, rand
 import ConjugatePriors: NormalInverseChisq, posterior_canon, suffstats
 import Distributions: invsqrt2π, log2π, logpdf, pdf, zval
 import InteractiveUtils: @which
@@ -30,6 +30,7 @@ include("stats/vector.jl")
 
 include("sampler/initial.jl")
 include("sampler/transmat.jl")
+include("sampler/bmm.jl")
 include("sampler/dpmm.jl")
 include("sampler/stateseq.jl")
 include("sampler/likelihoods.jl")

@@ -8,9 +8,7 @@ end
 function likelihoods(sampler, state, y)
     L, LP, T = sampler.L, sampler.LP, length(y)
 
-    log_ψ  = map(eachindex(state.obs_model.mixtures)) do k
-        log.(probs(state.obs_model.mixtures[k][1]))
-    end
+    log_ψ = map(d->log.(d.weights), state.obs_model.mixtures)
 
     # Per-mixture, per-component, *weighted* log-likelihoods
     log_pdfs_w = zeros(L, LP, T)
@@ -18,7 +16,7 @@ function likelihoods(sampler, state, y)
 
     @inbounds for (k, mixture) in enumerate(state.obs_model.mixtures)
         @inbounds for lp in OneTo(LP)
-            log_pdfs_w[k,lp,:] .= log_ψ[k][lp] .+ logpdf(mixture[1].components[lp], y)
+            log_pdfs_w[k,lp,:] .= log_ψ[k][lp] .+ logpdf(mixture.components[lp], y)
         end
         # TODO: Optimize this line
         log_likelihoods[:,k] = __inner_loop2(log_pdfs_w, k)
