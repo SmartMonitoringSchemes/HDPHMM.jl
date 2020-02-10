@@ -1,14 +1,11 @@
-rand(::T, args...) where T = rand(T, args...)
+# rand(::T, args...) where T <: Distribution = rand(T, args...)
 
-# TODO: type stability ?
-# ::Type{T} where T <: Normal instead ?
-
-function rand(T::Type{<:Normal}, pri::NormalInverseChisq)
+function rand(::Type{T}, pri::NormalInverseChisq) where T <: Normal
     μ, σ2 = rand(pri)
     Normal(μ, sqrt(σ2))
 end
 
-function rand(T::Type{<:Normal}, pri::NormalInverseChisq, X)
+function rand(::Type{T}, pri::NormalInverseChisq, X) where T <: Normal
     if length(X) > 0
         pri = posterior_canon(pri, suffstats(Normal, X))
     end

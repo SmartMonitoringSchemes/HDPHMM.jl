@@ -4,65 +4,80 @@ struct BlockedSampler
 end
 
 struct BlockedSamplerState
-    init_distn::InitialStateDistribution
-    trans_distn::TransitionDistribution
-    obs_model::DPMMObservationModel
+    initstate::InitialStateDistribution
+    transdist::TransitionDistribution
+    obsmodel::DPMMObservationModel
 end
 
-function resample(sampler, state, y)
+struct BlockedSamplerPrior
+    α0::Float64
+    transprior::TransitionDistributionPrior
+    obsprior::DPMMObservationModelPrior
+end
+
+"""
+    BlockedSamplerState(sampler, prior)
+
+Initialize (randomly) the blocked sampler state from the prior.
+"""
+function BlockedSamplerState(sampler::BlockedSampler, prior)
+    BlockedSamplerState(
+        InitialStateDistribution(sampler.L, prior.α0),
+        TransitionDistribution(sampler.L, prior.transprior),
+        DPMMObservationModel(sampler.L, sampler.LP, prior.obsprior),
+    )
+end
+
+"""
+    resample(sampler, state, y)
+
+Sample next state using `sampler` and observations `y`.
+"""
+function resample(sampler::BlockedSampler, state, prior, y)
     logpw, logp = likelihoods(sampler, state, y)
     z, s = resample_z(sampler, state, logpw, logp)
+    resample(sampler, state, prior, y, z, s)
+end
+
+"""
     resample(sampler, state, y, z, s)
+
+Sample next state using `sampler`, observations `y`,
+state sequence `z`, and components sequence `s`.
+"""
+function resample(sampler::BlockedSampler, state, prior, y, z, s)
+    stats = suffstats(state.obsmodel, y, z, s)
+    statep = BlockedSamplerState(
+        resample(state.initstate, z[1]),
+        resample(state.transdist, prior.transprior, stats.n),
+        resample(state.obsmodel, prior.obsprior, stats.n, stats.np, stats.Y),
+    )
+    z, s, statep
 end
 
-function resample(sampler, state, y, z, s)
-    stats       = suffstats(state.obs_model, y, z, s)
-    init_distn  = resample(state.init_distn, z[1])
-    trans_distn = resample(state.trans_distn, stats.n)
-    obs_model   = resample(state.obs_model, stats.n, stats.np, stats.Y)
-    z, s, BlockedSamplerState(init_distn, trans_distn, obs_model)
+# TODO: Rename, check stability and put inside
+@views function __inner_loop2(log_pdfs_w, k)
+    cs = maximum(log_pdfs_w[k, :, :], dims = 1)
+    cs .+ log.(sum(exp.(log_pdfs_w[k, :, :] .- cs), dims = 1))
 end
 
-# TODO: Test for type stability
+# TODO: Check type stability of function
+function likelihoods(sampler::BlockedSampler, state, y)
+    L, LP, T = sampler.L, sampler.LP, length(y)
 
-function suffstats(d::TransitionDistribution, z)
-   L, T = length(d.β), length(z)
+    log_ψ = map(d -> log.(d.prior.p), state.obsmodel.mixtures)
 
-    # n[j,k]  = number of customers in restaurant j eating dish k
-    n = zeros(Int, L, L)
+    # Per-mixture, per-component, *weighted* log-likelihoods
+    log_pdfs_w = zeros(L, LP, T)
+    log_likelihoods = zeros(T, L)
 
-    # DANGER: @inbounds so make sure that z[t] is in 1:L
-    @inbounds for t in 2:T
-	n[z[t-1],z[t]] += 1
+    @inbounds for (k, mixture) in enumerate(state.obsmodel.mixtures)
+        @inbounds for lp in OneTo(LP)
+            log_pdfs_w[k, lp, :] .= log_ψ[k][lp] .+ logpdf(mixture.components[lp], y)
+        end
+        # TODO: Optimize this line
+        log_likelihoods[:, k] = __inner_loop2(log_pdfs_w, k)
     end
 
-    n
+    log_pdfs_w, log_likelihoods
 end
-
-# TODO: Test that counts in np matches Y
-function suffstats(d::DPMMObservationModel, y::U, z, s) where U
-    @argcheck length(y) == length(z) == length(s)
-    # DANGER: This makes the assumptions that each obs. distn.
-    # have the same number of components (LP).
-    L, LP, T = length(d.mixtures), ncomponents(d.mixtures[1]), length(z)
-
-    # n[j,k]  = number of customers in restaurant j eating dish k
-    # n'[k,j] = number of observations associated to component j of state k mixture
-    n  = zeros(Int, L, L)
-    np = zeros(Int, L, LP)
-
-    # Observations assigned to each components
-    Y = Matrix{U}(undef, L, LP)
-    for i in eachindex(Y); Y[i] = U(); end
-    push!(Y[z[1],s[1]], y[1])
-
-    # DANGER: @inbounds so make sure that z[t] is in 1:L
-    @inbounds for t in 2:T
-        n[z[t-1],z[t]] += 1
-	np[z[t],s[t]] += 1
-        push!(Y[z[t],s[t]], y[t])
-    end
-
-    DPMMObservationModelStats(n, np, Y)
-end
-

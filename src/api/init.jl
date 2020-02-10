@@ -39,7 +39,7 @@ function initialize(it::BinsInit, X; kwargs...)
     X = X ./ maximum(X)
 
     width = 1 / it.K
-    edges = 0:width:(1 - width)
+    edges = 0:width:(1-width)
     seq = zeros(Int, length(X))
 
     for (i, left_val) in enumerate(edges)
@@ -53,13 +53,13 @@ end
 # TODO: Move these outside...
 
 function ffill!(X)
-    for i in 2:length(X)
-        ismissing(X[i]) && (X[i] = X[i - 1])
+    for i = 2:length(X)
+        ismissing(X[i]) && (X[i] = X[i-1])
     end
 end
 
 function bfill!(X)
-    for i in length(X) - 1:-1:1
-        ismissing(X[i]) && (X[i] = X[i + 1])
+    for i = length(X)-1:-1:1
+        ismissing(X[i]) && (X[i] = X[i+1])
     end
 end
