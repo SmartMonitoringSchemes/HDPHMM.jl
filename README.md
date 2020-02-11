@@ -50,7 +50,7 @@ Starting with v1.0, we follow [semantic versioning]():
 Contributions are very welcome, as are feature requests and suggestions.
 Please open an [issue][issues-url] if you encounter any problems.
 
-*Logo: lego by jon trillana from the Noun Project.*
+*Logo: infinite by Knut M. Synstad from the Noun Project.*
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg?style=flat
 [docs-stable-url]: https://maxmouchet.github.io/HDPHMM.jl/stable
@@ -59,4 +59,3 @@ Please open an [issue][issues-url] if you encounter any problems.
 [docs-dev-url]: https://maxmouchet.github.io/HDPHMM.jl/dev
 
 [issues-url]: https://github.com/maxmouchet/HDPHMM.jl/issues
-
