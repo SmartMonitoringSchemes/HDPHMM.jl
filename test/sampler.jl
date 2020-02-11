@@ -33,8 +33,8 @@ end
     L = 10
 
     p = TransitionDistributionPrior(
-        Gamma(1, 1/0.1),
-        Gamma(1, 1/0.1),
+        Gamma(1, 1/0.001),
+        Gamma(1, 1/0.001),
         Beta(50, 1)
     )
 
@@ -73,8 +73,8 @@ end
     L, LP = 10, 5
 
     tp = TransitionDistributionPrior(
-        Gamma(1, 1/0.01),
-        Gamma(1, 1/0.01),
+        Gamma(1, 1/0.001),
+        Gamma(1, 1/0.001),
         Beta(500, 1)
     )
 

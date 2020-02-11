@@ -7,8 +7,8 @@ import ConjugatePriors: NormalInverseChisq
     L, LP = 10, 5
 
     tp = TransitionDistributionPrior(
-        Gamma(1, 1/0.01),
-        Gamma(1, 1/0.01),
+        Gamma(1, 1/0.001),
+        Gamma(1, 1/0.001),
         Beta(500, 1)
     )
 
