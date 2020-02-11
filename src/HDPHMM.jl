@@ -27,6 +27,7 @@ export InitialStateDistribution,
     BinsInit,
     FixedInit,
     KMeansInit,
+    select_hamming,
     resample_interval
 
 include("stats/conjugate.jl")
