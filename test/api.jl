@@ -29,6 +29,29 @@ import ConjugatePriors: NormalInverseChisq
     @test_nowarn sample(sampler, prior, data, config = config)
 end
 
+@testset "Sampler API - Init" begin
+    L, LP = 10, 5
+
+    tp = TransitionDistributionPrior(
+        Gamma(1, 1/0.001),
+        Gamma(1, 1/0.001),
+        Beta(500, 1)
+    )
+
+    op = DPMMObservationModelPrior{Normal}(
+        NormalInverseChisq(1, 1, 1, 1),
+        Gamma(1, 0.5),
+    )
+
+    sampler = BlockedSampler(L, LP)
+    prior = BlockedSamplerPrior(1.0, tp, op)
+    data = rand(1000)
+
+    @test_nowarn sample(sampler, prior, data, config = MCConfig(init = KMeansInit(L)))
+    @test_nowarn sample(sampler, prior, data, config = MCConfig(init = BinsInit(L)))
+    @test_nowarn sample(sampler, prior, data, config = MCConfig(init = FixedInit(ones(length(data)))))
+end
+
 @testset "Cleaning API" begin
     index = [730, 247]
     data = [2., 1.]
