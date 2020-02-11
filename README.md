@@ -7,8 +7,8 @@
   <a href="https://github.com/maxmouchet/HDPHMM.jl/actions">
     <img src="https://github.com/maxmouchet/HDPHMM.jl/workflows/CI/badge.svg">
   </a>
-  <a href="https://codecov.io/github/maxmouchet/HDPHMM.jl?branch=master">
-    <img src="https://codecov.io/github/maxmouchet/HDPHMM.jl/coverage.svg?branch=master">
+  <a href="https://codecov.io/gh/maxmouchet/HDPHMM.jl">
+    <img src="https://codecov.io/gh/maxmouchet/HDPHMM.jl/branch/master/graph/badge.svg?token=ufprqw9fEt">
   </a>
 </p>
 
@@ -50,7 +50,7 @@ Starting with v1.0, we follow [semantic versioning]():
 Contributions are very welcome, as are feature requests and suggestions.
 Please open an [issue][issues-url] if you encounter any problems.
 
-*Logo: lego by jon trillana from the Noun Project.*
+*Logo: infinite by Knut M. Synstad from the Noun Project.*
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg?style=flat
 [docs-stable-url]: https://maxmouchet.github.io/HDPHMM.jl/stable
@@ -59,4 +59,3 @@ Please open an [issue][issues-url] if you encounter any problems.
 [docs-dev-url]: https://maxmouchet.github.io/HDPHMM.jl/dev
 
 [issues-url]: https://github.com/maxmouchet/HDPHMM.jl/issues
-
