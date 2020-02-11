@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        julia-version: [1.3.0]
+        julia-version: [1.0.4, 1.3.1]
         os: [ubuntu-latest]
 
     steps:
@@ -17,5 +17,11 @@ jobs:
           version: ${{ matrix.julia-version }}
       - name: "Run Julia tests"
         run: |
-          julia --project=@. -e "using Pkg; Pkg.instantiate();"
-          julia --project=@. --check-bounds=yes -e "using Pkg; Pkg.test(\"Leaf\", coverage=true);"
+          julia --project=@. --check-bounds=yes -e "using Pkg; Pkg.test(\"HDPHMM\", coverage=true);"
+      - name: "Upload coverage"
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: |
+          julia --project=@. -e "using Pkg; Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(Codecov.process_folder())"
+
+
