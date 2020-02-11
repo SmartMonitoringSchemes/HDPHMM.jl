@@ -1,7 +1,7 @@
-name = "Leaf"
-uuid = "6ef5f6ad-5387-486d-9222-e3ec137b0242"
+name = "HDPHMM"
+uuid = "d69f1d75-0f53-4bd4-8114-76337d5140b8"
 authors = ["Maxime Mouchet <max@maxmouchet.com>"]
-version = "0.1.0"
+version = "0.9.0"
 
 [deps]
 ArgCheck = "dce04be8-c92d-5529-be00-80e4d2c0e197"
@@ -16,6 +16,12 @@ Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 [compat]
 ArgCheck = "1.0"
 ConjugatePriors = "0.4"
-Distributions = "0.21"
+Distributions = "0.20, 0.21, 0.22"
 HMMBase = "1.0"
 julia = "1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

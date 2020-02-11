@@ -1,13 +1,62 @@
-# Leaf.jl
+<p align="center">
+  <img src="/docs/src/assets/logo.png" height="150"><br/>
+  <i>Infinite Hidden Markov Models for Julia.</i><br/><br/>
+  <a href="https://maxmouchet.github.io/HDPHMM.jl/stable">
+    <img src="https://img.shields.io/badge/docs-stable-blue.svg?style=flat">
+  </a>
+  <a href="https://github.com/maxmouchet/HDPHMM.jl/actions">
+    <img src="https://github.com/maxmouchet/HDPHMM.jl/workflows/CI/badge.svg">
+  </a>
+  <a href="https://codecov.io/github/maxmouchet/HDPHMM.jl?branch=master">
+    <img src="https://codecov.io/github/maxmouchet/HDPHMM.jl/coverage.svg?branch=master">
+  </a>
+</p>
 
-<a href="https://github.com/maxmouchet/Leaf.jl/actions">
-<img src="https://github.com/maxmouchet/Leaf.jl/workflows/CI/badge.svg">
-</a>
+**TODO**
+- [ ] Multivariate obs.
+- [ ] pre-commit, formatter, linter, ...
+- [ ] Test for type stability
+- [ ] Dataset is from Shao ...
+- [ ] Docs, CONTRIBUTING.md
 
-Lightweight implementation of the sticky HDP-HMM blocked sampler.
+## Installation
 
-TODO: Multivariate obs.  
-TODO: pre-commit, formatter, linter, ...  
-TODO: Test for type stability
+The package can be installed with the Julia package manager.
+From the Julia REPL, type `]` to enter the Pkg REPL mode and run:
 
-Dataset is from Shao ...
+```
+pkg> registry add git@github.com:maxmouchet/JuliaRegistryPrivate.git
+pkg> add HDPHMM
+```
+
+## Documentation
+
+- [**STABLE**][docs-stable-url] &mdash; **documentation of the most recently tagged version.**
+- [**DEVEL**][docs-dev-url] &mdash; *documentation of the in-development version.*
+
+## Project Status
+
+The package is tested against Julia 1.0 and Julia 1.2.  
+
+Starting with v1.0, we follow [semantic versioning]():
+
+> Given a version number MAJOR.MINOR.PATCH, increment the:
+> 1. MAJOR version when you make incompatible API changes,
+> 2. MINOR version when you add functionality in a backwards compatible manner, and
+> 3. PATCH version when you make backwards compatible bug fixes.
+
+## Questions and Contributions
+
+Contributions are very welcome, as are feature requests and suggestions.
+Please open an [issue][issues-url] if you encounter any problems.
+
+*Logo: lego by jon trillana from the Noun Project.*
+
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg?style=flat
+[docs-stable-url]: https://maxmouchet.github.io/HDPHMM.jl/stable
+
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg?style=flat
+[docs-dev-url]: https://maxmouchet.github.io/HDPHMM.jl/dev
+
+[issues-url]: https://github.com/maxmouchet/HDPHMM.jl/issues
+

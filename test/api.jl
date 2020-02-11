@@ -1,4 +1,4 @@
-using Leaf
+using HDPHMM
 using Test
 using Distributions
 import ConjugatePriors: NormalInverseChisq

@@ -1,4 +1,4 @@
-module Leaf
+module HDPHMM
 
 using ArgCheck
 using Clustering
@@ -45,6 +45,6 @@ include("api/init.jl")
 include("api/sample.jl")
 include("api/cleaning.jl")
 
-printinfo(msg) = println("[Leaf #$(Threads.threadid())] $(msg)")
+printinfo(msg) = println("[HDPHMM #$(Threads.threadid())] $(msg)")
 
 end

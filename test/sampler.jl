@@ -1,8 +1,8 @@
-using Leaf
+using HDPHMM
 using Test
 using Distributions
 import ConjugatePriors: NormalInverseChisq
-import Leaf: DPMMObservationModelStats
+import HDPHMM: DPMMObservationModelStats
 
 # TODO: Add tests with missing values:
 # - Float64 observations only
