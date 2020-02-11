@@ -6,6 +6,7 @@ function rand(::Type{T}, pri::NormalInverseChisq) where T <: Normal
 end
 
 function rand(::Type{T}, pri::NormalInverseChisq, X) where T <: Normal
+    X = collect(skipmissing(X))
     if length(X) > 0
         pri = posterior_canon(pri, suffstats(Normal, X))
     end

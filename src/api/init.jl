@@ -23,16 +23,12 @@ end
 initialize(it::FixedInit, ::Any; kwargs...) = it.seq
 
 function initialize(it::KMeansInit, X; verb = false)
-    X = copy(X)
-    ffill!(X)
-    bfill!(X)
+    X = fill(X)
     kmeans(permutedims(X), it.K, display = verb ? :final : :none).assignments
 end
 
 function initialize(it::BinsInit, X; kwargs...)
-    X = copy(X)
-    ffill!(X)
-    bfill!(X)
+    X = fill(X)
 
     # Normalize series in [0,1]
     X = X .- minimum(X)
@@ -51,6 +47,13 @@ function initialize(it::BinsInit, X; kwargs...)
 end
 
 # TODO: Move these outside...
+
+function fill(X)
+    X = copy(X)
+    ffill!(X)
+    bfill!(X)
+    disallowmissing(X)
+end
 
 function ffill!(X)
     for i = 2:length(X)

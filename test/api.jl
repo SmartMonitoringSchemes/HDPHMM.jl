@@ -1,6 +1,7 @@
 using HDPHMM
 using Test
 using Distributions
+using Missings
 import ConjugatePriors: NormalInverseChisq
 
 function getprior()
@@ -36,11 +37,23 @@ end
     L, LP = 10, 5
     sampler = BlockedSampler(L, LP)
     prior = getprior()
-    data = rand(1000)
+    data = allowmissing(rand(1000))
 
     @test_nowarn sample(sampler, prior, data, config = MCConfig(init = KMeansInit(L)))
     @test_nowarn sample(sampler, prior, data, config = MCConfig(init = BinsInit(L)))
     @test_nowarn sample(sampler, prior, data, config = MCConfig(init = FixedInit(ones(length(data)))))
+end
+
+@testset "Sampler API - Missings" begin
+    L, LP = 10, 5
+    sampler = BlockedSampler(L, LP)
+    prior = getprior()
+
+    data = allowmissing(rand(1000))
+    data[100:110] .= missing
+
+    HDPHMM.enablemissing(1.0)
+    @test_nowarn sample(sampler, prior, data)
 end
 
 @testset "Chain" begin
