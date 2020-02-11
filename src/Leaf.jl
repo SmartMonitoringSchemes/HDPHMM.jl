@@ -4,6 +4,7 @@ using ArgCheck
 using Clustering
 using Distributions
 using HMMBase
+using Missings
 
 # TODO: Remove unused, if any
 import Base: OneTo, cat, getindex, lastindex, length, size, rand
@@ -25,7 +26,8 @@ export InitialStateDistribution,
     resample,
     BinsInit,
     FixedInit,
-    KMeansInit
+    KMeansInit,
+    resample_interval
 
 include("stats/conjugate.jl")
 include("stats/distributions.jl")
@@ -41,6 +43,7 @@ include("sampler/sampler.jl")
 include("api/chain.jl")
 include("api/init.jl")
 include("api/sample.jl")
+include("api/cleaning.jl")
 
 printinfo(msg) = println("[Leaf #$(Threads.threadid())] $(msg)")
 
