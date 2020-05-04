@@ -1,14 +1,8 @@
 <p align="center">
   <img src="/docs/src/assets/logo.png" height="150"><br/>
   <i>Infinite Hidden Markov Models for Julia.</i><br/><br/>
-  <a href="https://maxmouchet.github.io/HDPHMM.jl/stable">
-    <img src="https://img.shields.io/badge/docs-stable-blue.svg?style=flat">
-  </a>
-  <a href="https://github.com/maxmouchet/HDPHMM.jl/actions">
-    <img src="https://github.com/maxmouchet/HDPHMM.jl/workflows/CI/badge.svg">
-  </a>
-  <a href="https://codecov.io/gh/maxmouchet/HDPHMM.jl">
-    <img src="https://codecov.io/gh/maxmouchet/HDPHMM.jl/branch/master/graph/badge.svg?token=ufprqw9fEt">
+  <a href="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/actions">
+    <img src="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/workflows/CI/badge.svg">
   </a>
 </p>
 
