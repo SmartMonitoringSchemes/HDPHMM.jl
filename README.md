@@ -19,7 +19,7 @@ The package can be installed with the Julia package manager.
 From the Julia REPL, type `]` to enter the Pkg REPL mode and run:
 
 ```
-pkg> registry add git@github.com:maxmouchet/JuliaRegistryPrivate.git
+pkg> registry add git@github.com:SmartMonitoringSchemes/Registry.git
 pkg> add HDPHMM
 ```
 
@@ -47,9 +47,9 @@ Please open an [issue][issues-url] if you encounter any problems.
 *Logo: infinite by Knut M. Synstad from the Noun Project.*
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg?style=flat
-[docs-stable-url]: https://maxmouchet.github.io/HDPHMM.jl/stable
+[docs-stable-url]: https://SmartMonitoringSchemes.github.io/HDPHMM.jl/stable
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg?style=flat
-[docs-dev-url]: https://maxmouchet.github.io/HDPHMM.jl/dev
+[docs-dev-url]: https://SmartMonitoringSchemes.github.io/HDPHMM.jl/dev
 
-[issues-url]: https://github.com/maxmouchet/HDPHMM.jl/issues
+[issues-url]: https://github.com/SmartMonitoringSchemes/HDPHMM.jl/issues
