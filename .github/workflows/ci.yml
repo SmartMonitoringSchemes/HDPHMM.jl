@@ -18,10 +18,5 @@ jobs:
       - name: "Run Julia tests"
         run: |
           julia --project=@. --check-bounds=yes -e "using Pkg; Pkg.test(\"HDPHMM\", coverage=true);"
-      - name: "Upload coverage"
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          julia --project=@. -e "using Pkg; Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(Codecov.process_folder())"
 
 
