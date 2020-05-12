@@ -5,13 +5,18 @@ using Clustering
 using Distributions
 using HMMBase
 using Missings
+using Statistics
+using StatsBase
 
-# TODO: Remove unused, if any
-import Base: OneTo, cat, getindex, lastindex, length, size, rand
-import ConjugatePriors: NormalInverseChisq, posterior_canon, suffstats
-import Distributions: invsqrt2π, log2π, logpdf, pdf, zval, sample
-import InteractiveUtils: @which
-import Printf: @printf
+using Base: OneTo
+using ConjugatePriors: NormalInverseChisq, posterior_canon
+using Distributions: invsqrt2π, log2π
+using InteractiveUtils: @which
+using Printf: @printf
+
+import Base: cat, getindex, lastindex, length, size, rand
+import Distributions: logpdf, pdf, suffstats, zval, sample
+import HMMBase: HMM
 
 export InitialStateDistribution,
     TransitionDistribution,
@@ -28,12 +33,14 @@ export InitialStateDistribution,
     FixedInit,
     KMeansInit,
     select_hamming,
-    resample_interval
+    resample_interval,
+    robuststats
 
 include("stats/conjugate.jl")
 include("stats/distributions.jl")
 include("stats/missings.jl")
 include("stats/vector.jl")
+include("stats/robust.jl")
 
 include("sampler/dpmm.jl")
 include("sampler/initstate.jl")

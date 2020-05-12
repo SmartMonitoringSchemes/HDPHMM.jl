@@ -18,6 +18,7 @@
 - [ ] Test for type stability
 - [ ] Dataset is from Shao ...
 - [ ] Docs, CONTRIBUTING.md
+- [ ] Implement prune
 
 ## Installation
 
