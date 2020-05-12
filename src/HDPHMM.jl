@@ -52,6 +52,7 @@ include("api/chain.jl")
 include("api/init.jl")
 include("api/sample.jl")
 include("api/cleaning.jl")
+include("api/hmm.jl")
 
 printinfo(msg) = println("[HDPHMM #$(Threads.threadid())] $(msg)")
 
