@@ -1,7 +1,7 @@
 name = "HDPHMM"
 uuid = "d69f1d75-0f53-4bd4-8114-76337d5140b8"
 authors = ["Maxime Mouchet <max@maxmouchet.com>"]
-version = "0.9.1"
+version = "0.9.2"
 
 [deps]
 ArgCheck = "dce04be8-c92d-5529-be00-80e4d2c0e197"
