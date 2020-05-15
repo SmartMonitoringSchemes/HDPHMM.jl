@@ -12,7 +12,7 @@ function robuststats(::Type{Normal}, x::AbstractVector)
 
     # Fallback to empirical mean/variance otherwise
     (xmed == 0) && (xmed = mean(x))
-    (xvar == 0) && (xvar = var(data))
+    (xvar == 0) && (xvar = var(x))
 
     xmed, xvar
 end
