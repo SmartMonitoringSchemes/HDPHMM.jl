@@ -1,4 +1,3 @@
-
 # Warn if duplicates (more than 1 sample in an interval) ?
 # Move to HMMBase ?
 function resample_interval(index, data, interval; align = false)
@@ -11,7 +10,7 @@ function resample_interval(index, data, interval; align = false)
     perm = sortperm(index)
     index, data = index[perm], data[perm]
 
-    index_ = allowmissing([index[1]])
+    index_ = [index[1]]
     data_ = allowmissing([data[1]])
 
     i = 2
