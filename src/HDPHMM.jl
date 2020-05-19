@@ -2,20 +2,26 @@ module HDPHMM
 
 using ArgCheck
 using Clustering
-using Distributions
 using HMMBase
 using Missings
 using Statistics
 using StatsBase
 
+# Re-export for convenience
+# https://github.com/simonster/Reexport.jl
+# https://github.com/JuliaLang/julia/issues/1986
+using Reexport
+@reexport using ConjugatePriors
+@reexport using Distributions
+
 using Base: OneTo
-using ConjugatePriors: NormalInverseChisq, posterior_canon
 using Distributions: invsqrt2π, log2π
 using InteractiveUtils: @which
 using Printf: @printf
 
 import Base: cat, getindex, lastindex, length, size, rand
 import Distributions: MixtureModel, Normal, logpdf, pdf, suffstats, zval, sample
+import JSON: parsefile
 import HMMBase: HMM
 
 export InitialStateDistribution,
@@ -27,6 +33,7 @@ export InitialStateDistribution,
     BlockedSampler,
     BlockedSamplerPrior,
     BlockedSamplerState,
+    DataSegmentationModel,
     MCConfig,
     resample,
     BinsInit,
@@ -34,7 +41,9 @@ export InitialStateDistribution,
     KMeansInit,
     select_hamming,
     resample_interval,
-    robuststats
+    robuststats,
+    parsefile,
+    segment
 
 include("stats/conjugate.jl")
 include("stats/distributions.jl")
@@ -53,6 +62,7 @@ include("api/init.jl")
 include("api/sample.jl")
 include("api/cleaning.jl")
 include("api/hmm.jl")
+include("api/easy.jl")
 
 include("io.jl")
 

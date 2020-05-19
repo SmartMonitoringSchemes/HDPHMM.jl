@@ -17,3 +17,16 @@ function MixtureModel(T::Type{<:Distribution}, d::Dict)
 end
 
 Normal(d::Dict) = Normal(d["μ"], d["σ"])
+
+function DataSegmentationModel(d::Dict)
+    index = Vector{Int}(d["index"])
+    state = Vector{Int}(d["state"])
+    model = HMM(MixtureModel, Normal, d["model"])
+    data = replace(d["data"], nothing => missing)
+    data = Vector{Union{Float64, Missing}}(data)
+    DataSegmentationModel(index, state, model, data)
+end
+
+function parsefile(::Type{DataSegmentationModel}, filename)
+    DataSegmentationModel(parsefile(filename))
+end
