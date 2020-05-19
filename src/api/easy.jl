@@ -1,7 +1,7 @@
 # High-level API for model inference and data segmentation.
 
 struct DataSegmentationModel{T}
-    data::Vector{Union{T, Missing}}
+    data::Vector{T}
     index::Vector{Int}
     state::Vector{Int}
     model::HMM
@@ -14,3 +14,4 @@ function segment(index, data, prior; L = 10, LP = 5, init = KMeansInit(L), kwarg
     DataSegmentationModel(data, index, z, HMM(state, z))
 end
 
+segment(data, prior; kwargs...) = segment(collect(1:length(data)), data, prior; kwargs...)
