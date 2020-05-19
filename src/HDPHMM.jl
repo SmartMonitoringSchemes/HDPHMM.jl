@@ -15,7 +15,7 @@ using InteractiveUtils: @which
 using Printf: @printf
 
 import Base: cat, getindex, lastindex, length, size, rand
-import Distributions: logpdf, pdf, suffstats, zval, sample
+import Distributions: MixtureModel, Normal, logpdf, pdf, suffstats, zval, sample
 import HMMBase: HMM
 
 export InitialStateDistribution,
@@ -53,6 +53,8 @@ include("api/init.jl")
 include("api/sample.jl")
 include("api/cleaning.jl")
 include("api/hmm.jl")
+
+include("io.jl")
 
 printinfo(msg) = println("[HDPHMM #$(Threads.threadid())] $(msg)")
 
