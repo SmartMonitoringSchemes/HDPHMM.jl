@@ -1,16 +1,18 @@
+# .github/workflows/CompatHelper.yml
 name: CompatHelper
-
 on:
   schedule:
     - cron: '00 00 * * *'
-
 jobs:
   CompatHelper:
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@4fcb25e
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Pkg.add("CompatHelper")
         run: julia -e 'using Pkg; Pkg.add("CompatHelper")'
       - name: CompatHelper.main()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: julia -e 'using CompatHelper; CompatHelper.main()'
+        run: julia -e 'using CompatHelper; using Pkg; CompatHelper.main(registries = [Pkg.RegistrySpec(name = "General"), Pkg.RegistrySpec(url = "git@github.com:SmartMonitoringSchemes/Registry.git")])'
