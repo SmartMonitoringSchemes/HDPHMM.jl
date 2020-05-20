@@ -24,7 +24,7 @@ function DataSegmentationModel(d::Dict)
     model = HMM(MixtureModel, Normal, d["model"])
     data = replace(d["data"], nothing => missing)
     data = Vector{Union{Float64, Missing}}(data)
-    DataSegmentationModel(index, state, model, data)
+    DataSegmentationModel(data, index, state, model)
 end
 
 function parsefile(::Type{DataSegmentationModel}, filename)
