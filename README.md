@@ -4,6 +4,9 @@
   <a href="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/actions">
     <img src="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/workflows/CI/badge.svg">
   </a>
+  <a href="https://codecov.io/gh/SmartMonitoringSchemes/HDPHMM.jl">
+    <img src="https://codecov.io/gh/SmartMonitoringSchemes/HDPHMM.jl/branch/master/graph/badge.svg?token=ufprqw9fEt">
+  </a>
 </p>
 
 **TODO**
