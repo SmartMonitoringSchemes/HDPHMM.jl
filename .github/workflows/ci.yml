@@ -1,8 +1,10 @@
 # .github/workflows/ci.yml
 name: CI
+
 on: [push, pull_request]
+
 jobs:
-  test:
+  test_jl:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,3 +29,26 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: |
           julia -e "using Pkg; Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(Codecov.process_folder())"
+
+  test_py:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: julia-actions/setup-julia@latest
+        with:
+          version: '1.4'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - uses: webfactory/ssh-agent@4fcb25e
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Install project
+        run: |
+          pip install poetry
+          poetry install
+          poetry run python -c 'import hdphmm; hdphmm.install()'
+        working-directory: python/
+      - name: Test project
+        run: poetry run pytest
+        working-directory: python/

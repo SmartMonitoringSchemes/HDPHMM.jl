@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hdphmm"
+version = "0.1.0"
+description = "Python wrapper to HDPHMM.jl."
+authors = ["Maxime Mouchet <max@maxmouchet.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+julia = "^0.5.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
