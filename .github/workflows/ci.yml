@@ -48,7 +48,5 @@ jobs:
           pip install poetry
           poetry install
           poetry run python -c 'import hdphmm; hdphmm.install()'
-        working-directory: python/
       - name: Test project
-        run: poetry run pytest
-        working-directory: python/
+        run: poetry run pytest python/

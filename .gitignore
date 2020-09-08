@@ -25,3 +25,8 @@ Manifest.toml
 .vscode/
 
 .ipynb_checkpoints/
+
+# Python files
+__pycache__/
+*.egg-info/
+poetry.lock

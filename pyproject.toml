@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Python wrapper to HDPHMM.jl."
 authors = ["Maxime Mouchet <max@maxmouchet.com>"]
 license = "MIT"
+packages = [
+    { include = "hdphmm", from = "python" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
