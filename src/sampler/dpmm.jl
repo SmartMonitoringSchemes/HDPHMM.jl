@@ -23,6 +23,8 @@ function DPMMObservationModel(L, LP, prior::DPMMObservationModelPrior{T}) where 
     DPMMObservationModel(mixtures, σ)
 end
 
+const DPGMMObservationModelPrior = DPMMObservationModelPrior{Normal}
+
 # (L, LP)
 size(m::DPMMObservationModel, dim = :) =
     (length(m.mixtures), ncomponents(m.mixtures[1]))[dim]
