@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hdphmm"
-version = "0.1.0"
+version = "0.9.7"
 description = "Python wrapper to HDPHMM.jl."
 authors = ["Maxime Mouchet <max@maxmouchet.com>"]
 license = "MIT"
