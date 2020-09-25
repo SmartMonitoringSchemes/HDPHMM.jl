@@ -19,6 +19,20 @@ pkg> registry add git@github.com:SmartMonitoringSchemes/Registry.git
 pkg> add HDPHMM
 ```
 
+### Python bindings
+
+To install the Python bindings (requires a working Julia installation):
+
+```bash
+pip install git+ssh://git@github.com/SmartMonitoringSchemes/HDPHMM.jl.git
+python -c 'import hdphmm; hdphmm.install()'
+```
+
+## Documentation
+
+For the Julia package, see [`test/`](/test/).  
+For the Python bindings, see [`python/tests/test_hdphmm.py`](python/tests/test_hdphmm.py).
+
 ## Project Status
 
 The package is tested against Julia 1.5  
