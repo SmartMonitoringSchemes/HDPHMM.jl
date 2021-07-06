@@ -12,7 +12,7 @@ end
 Sampler configuration.
 """
 function MCConfig(; kwargs...)
-    d = Dict(:burnin => 0.1, :chains => 1, :iter => 100, :init => nothing, :verb => false)
+    d = Dict{Symbol,Any}(:burnin => 0.1, :chains => 1, :iter => 100, :init => nothing, :verb => false)
     merge!(d, kwargs)
     MCConfig(d[:burnin], d[:chains], d[:iter], d[:init], d[:verb])
 end
