@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@latest
         with:
-          version: '1.5'
-      - uses: webfactory/ssh-agent@4fcb25e
+          version: '1.6'
+      - uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: "Setup Julia registries"
@@ -36,11 +36,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@latest
         with:
-          version: '1.5'
+          version: '1.6'
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
-      - uses: webfactory/ssh-agent@4fcb25e
+          python-version: '3.9'
+      - uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Install project
