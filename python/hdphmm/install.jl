@@ -1,7 +1,7 @@
 using Pkg
 
 Pkg.Registry.add("General")
-Pkg.Registry.add(RegistrySpec(url="git@github.com:SmartMonitoringSchemes/Registry.git"))
+Pkg.Registry.add(RegistrySpec(url="https://github.com/SmartMonitoringSchemes/Registry"))
 
 if haskey(ENV, "GITHUB_ACTIONS")
     Pkg.add("PyCall")

@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="/docs/src/assets/logo.png" height="150"><br/>
+  <img src="/.github/logo.png" height="150"><br/>
   <i>Infinite Hidden Markov Models for Julia.</i><br/><br/>
-  <a href="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/actions">
-    <img src="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/workflows/CI/badge.svg">
+  <a href="https://app.codecov.io/gh/SmartMonitoringSchemes/HDPHMM.jl">
+    <img src="https://img.shields.io/codecov/c/github/SmartMonitoringSchemes/HDPHMM.jl?logo=codecov&logoColor=white">
   </a>
-  <a href="https://codecov.io/gh/SmartMonitoringSchemes/HDPHMM.jl">
-    <img src="https://codecov.io/gh/SmartMonitoringSchemes/HDPHMM.jl/branch/master/graph/badge.svg?token=ufprqw9fEt">
+  <a href="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/actions/workflows/tests.yml">
+    <img src="https://img.shields.io/github/workflow/status/SmartMonitoringSchemes/HDPHMM.jl/Tests?logo=github&label=tests">
   </a>
 </p>
 
@@ -15,7 +15,7 @@ The package can be installed with the Julia package manager.
 From the Julia REPL, type `]` to enter the Pkg REPL mode and run:
 
 ```
-pkg> registry add git@github.com:SmartMonitoringSchemes/Registry.git
+pkg> registry add https://github.com/SmartMonitoringSchemes/Registry
 pkg> add HDPHMM
 ```
 
@@ -24,7 +24,7 @@ pkg> add HDPHMM
 To install the Python bindings (requires a working Julia installation):
 
 ```bash
-pip install git+ssh://git@github.com/SmartMonitoringSchemes/HDPHMM.jl.git
+pip install git+https://github.com/SmartMonitoringSchemes/HDPHMM.jl.git
 python -c 'import hdphmm; hdphmm.install()'
 ```
 
