@@ -14,7 +14,7 @@ function resample_z(sampler, state, logpw, logp)
     log_π = log.(state.transdist.π)
 
     # 1. Compute backward probabilities
-    log_betas = log.(backward(state.initstate.π0, state.transdist.π, logp, logl = true)[1])
+    log_betas = backward(state.initstate.π0, state.transdist.π, logp)[1]
 
     # 2. Sample state sequence
     z = zeros(Int, T)
