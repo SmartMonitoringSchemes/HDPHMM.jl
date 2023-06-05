@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/codecov/c/github/SmartMonitoringSchemes/HDPHMM.jl?logo=codecov&logoColor=white">
   </a>
   <a href="https://github.com/SmartMonitoringSchemes/HDPHMM.jl/actions/workflows/tests.yml">
-    <img src="https://img.shields.io/github/workflow/status/SmartMonitoringSchemes/HDPHMM.jl/Tests?logo=github&label=tests">
+    <img src="https://img.shields.io/github/actions/workflow/status/SmartMonitoringSchemes/HDPHMM.jl/tests.yml?logo=github&label=tests">
   </a>
 </p>
 
